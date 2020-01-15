@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+// 定义请求头
+import '../config/httpHeaders.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -75,7 +77,9 @@ class _HomePageState extends State<HomePage> {
      try {
        Response response;
        var data = {'name': typeText};
-       response = await Dio().post('https://www.easy-mock.com/mock/5e1dcdd5fe6d23409285a687/example/postTest',
+       var dio = Dio();
+       dio.options.headers = httpHeaders;
+       response = await dio.post('https://www.easy-mock.com/mock/5e1dcdd5fe6d23409285a687/example/postTest',
        queryParameters: data);
        print(response.data);
        return response.data;
