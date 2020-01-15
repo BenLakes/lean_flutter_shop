@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
     );
    } else {
 // 不为空请求网络
-     var res = await _getHttp(typeController.text.toString());
+     var res = await _postHttp(typeController.text.toString());
      print("res === ${res}");
      setState(() {
        showText = res['data']['name'].toString();
@@ -71,11 +71,11 @@ class _HomePageState extends State<HomePage> {
    }
  }
   
-  Future _getHttp(String typeText) async {
+  Future _postHttp(String typeText) async {
      try {
        Response response;
        var data = {'name': typeText};
-       response = await Dio().get('https://www.easy-mock.com/mock/5e1dcdd5fe6d23409285a687/example/getTest',
+       response = await Dio().post('https://www.easy-mock.com/mock/5e1dcdd5fe6d23409285a687/example/postTest',
        queryParameters: data);
        print(response.data);
        return response.data;
