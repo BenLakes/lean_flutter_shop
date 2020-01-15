@@ -26,9 +26,15 @@ class _HomePageState extends State<HomePage> {
             var data = json.decode(snapshot.data.toString());
             //顶部轮播图片数据
             List<Map> swiperDataList = (data['data']['slides'] as List).cast();
+            // GridView 数据
+            List<Map> navigatorList = (data['data']['category'] as List).cast();
+            // 广告图片
+            String advertesPicture = data['data']['advertesPicture']['PICTURE_ADDRESS'];
             return Column(
                children: <Widget>[
                  SwiperDiy(swiperDataList),
+                 TopNavigator(navigatorList),
+                 AdBanner(advertesPicture),
                ], 
             );
           }else {
@@ -66,6 +72,61 @@ class SwiperDiy extends StatelessWidget {
         // 是否自动滚动
         autoplay: true,
       ),
+    );
+  }
+}
+
+
+
+// 导航GridView 部件编写
+class TopNavigator extends StatelessWidget {
+  final List navigatorList;
+  TopNavigator(this.navigatorList);
+//  _gridViewItemUI 构建单个 item
+  Widget _gridViewItemUI(BuildContext context, item) {
+    //  InkWell 点击有水波纹效果， 而 GestureDetector 没有
+     return InkWell(
+         onTap: () {
+           print('点击了导航'); 
+        },
+        child: Column(
+           children: <Widget>[
+             Image.network(
+               item['image'],
+               width: ScreenUtil().setWidth(95),
+               ),
+               Text(item['mallCategoryName']),
+           ], 
+        ),
+     ); 
+  }
+  @override
+  Widget build(BuildContext context) {
+    if (navigatorList.length > 10) {
+      navigatorList.removeLast();
+    }
+    return Container(
+      height: ScreenUtil().setHeight(320),
+      padding: EdgeInsets.all(3.0),
+      child: GridView.count(
+        crossAxisCount: 5,
+        children: navigatorList.map((item){
+           return _gridViewItemUI(context, item); 
+        }).toList(),
+      ),
+      
+    );
+  }
+}
+
+// 广告图片
+class AdBanner extends StatelessWidget {
+  final String advertesPicture;
+  AdBanner(this.advertesPicture);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Image.network(this.advertesPicture),
     );
   }
 }
