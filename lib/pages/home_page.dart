@@ -61,9 +61,9 @@ class _HomePageState extends State<HomePage> {
    } else {
 // 不为空请求网络
      var res = await _getHttp(typeController.text.toString());
-     print(res);
+     print("res === ${res}");
      setState(() {
-       showText = res;
+       showText = res['data']['name'].toString();
      });
    }
  }
