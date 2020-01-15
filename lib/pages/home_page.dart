@@ -17,9 +17,10 @@ class _HomePageState extends State<HomePage> {
     return Container(
        child: Scaffold(
           appBar: AppBar(title: Text("美好人间"),),
-          body: Container(
+          body: SingleChildScrollView(
+            child:   Container(
             height: 1000,
-            margin: EdgeInsets.only(top: 10),
+            margin: EdgeInsets.only(top: 320),
             child: Column(
               children: <Widget>[
                   TextField(
@@ -46,6 +47,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          ),
+        
        ),
     );
   }

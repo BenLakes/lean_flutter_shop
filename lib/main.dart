@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return Container(
         child: MaterialApp(
           title: '商城学习',
-          debugShowCheckedModeBanner: false,
+          // debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.pink
           ),
