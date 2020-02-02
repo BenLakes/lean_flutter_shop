@@ -11,27 +11,18 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
-
+  PageController _pageController;
   final List<BottomNavigationBarItem> bottomTabs = [
+    BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), title: Text("首页")),
     BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.home),
-      title: Text("首页")
-    ),
-     BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.search),
-      title: Text("分类")
-    ),
-     BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.shopping_cart),
-      title: Text("购物车")
-    ),
-     BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.profile_circled),
-      title: Text("会员中心")
-    ),
+        icon: Icon(CupertinoIcons.search), title: Text("分类")),
+    BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.shopping_cart), title: Text("购物车")),
+    BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.profile_circled), title: Text("会员中心")),
   ];
 
-  final List tabBodies = [
+  final List<Widget> tabBodies = [
     HomePage(),
     CategoryPage(),
     CartPage(),
@@ -41,15 +32,22 @@ class _IndexPageState extends State<IndexPage> {
 // 选中的下边
   int currentIndex = 0;
 // 选中的页面
-   var currentPage;
-  
+  var currentPage;
+
   @override
   void initState() {
     // 初始化tabPage
     currentPage = tabBodies[currentIndex];
+    _pageController = new PageController()
+    ..addListener((){
+      if (currentPage != _pageController.page.round()) {
+        setState(() {
+          currentPage = _pageController.page.round();
+        });
+      }
+    });
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +57,17 @@ class _IndexPageState extends State<IndexPage> {
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         items: bottomTabs,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             currentIndex = index;
             currentPage = tabBodies[currentIndex];
           });
         },
       ),
-      body: currentPage,
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabBodies,
+      ),
     );
   }
 }
