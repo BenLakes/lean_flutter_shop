@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -71,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.8"
+  fluro:
+    dependency: "direct main"
+    description:
+      name: fluro
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -83,6 +97,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.9"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      name: flutter_html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.1"
   flutter_page_indicator:
     dependency: transitive
     description:
@@ -121,6 +142,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.3"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.14.0+3"
   http_parser:
     dependency: transitive
     description:
@@ -296,4 +324,4 @@ packages:
     version: "3.5.0"
 sdks:
   dart: ">2.4.0 <3.0.0"
-  flutter: ">=1.12.8 <2.0.0"
+  flutter: ">=1.12.8 <1.13.0"
